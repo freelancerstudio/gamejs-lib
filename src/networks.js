@@ -33,6 +33,7 @@ module.exports = {
     },
     pubKeyHash: 0x26,
     scriptHash: 0x05,
+    secondScriptHash: 0x3E,
     wif: 0xA6
   }
 }

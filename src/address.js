@@ -49,7 +49,8 @@ function toBech32 (data, version, prefix) {
 }
 
 function fromOutputScript (output, network) {
-  network = network || networks.bitcoin
+  // network = network || networks.bitcoin
+  network = network || networks.gamecredits
 
   try { return payments.p2pkh({ output, network }).address } catch (e) {}
   try { return payments.p2sh({ output, network }).address } catch (e) {}
@@ -60,7 +61,8 @@ function fromOutputScript (output, network) {
 }
 
 function toOutputScript (address, network) {
-  network = network || networks.bitcoin
+  // network = network || networks.bitcoin
+  network = network || networks.gamecredits
 
   let decode
   try {
