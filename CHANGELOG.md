@@ -1,3 +1,4 @@
+## bitcoinjs-lib changelog
 # 4.0.2
 __fixed__
 - Fixed `TransactionBuilder` not throwing when payment type validation should fail (#1195)
