@@ -103,25 +103,34 @@ describe('gamejs-lib (addresses)', function () {
     assert.strictEqual(address, '36LkV9RTC2qjwfBz4XimhnoiZ1zVSXeV1p')
   })
 
-  // TODO@All: Connect this part with blockexplorer so we can test valid addresses
-  // it('can support the retrieval of transactions for an address (via 3PBP)', function (done) {
-  //   const keyPair = game.ECPair.makeRandom()
-  //   const { address } = game.payments.p2pkh({ pubkey: keyPair.publicKey })
+  it('can support the retrieval of transactions for an address (via 3PBP)', function (done) {
+    const keyPair = game.ECPair.makeRandom()
+    const { address } = game.payments.p2pkh({ pubkey: keyPair.publicKey })
 
-  //   dhttp({
-  //     method: 'GET',
-  //     url: 'https://blockchain.info/rawaddr/' + address
-  //   }, function (err, result) {
-  //     if (err) return done(err)
+    dhttp({
+      method: 'GET',
+      url: 'https://blockexplorer.gamecredits.org/api/addresses/' + address + '/balance'
+    }, function (err, result) {
+      if (err) return done(err)
 
-  //     // random private keys [probably!] have no transactions
-  //     assert.strictEqual(result.n_tx, 0)
-  //     assert.strictEqual(result.total_received, 0)
-  //     assert.strictEqual(result.total_sent, 0)
-  //     done()
-  //   })
-  // })
+      // random private keys [probably!] have no balance
+      assert.strictEqual(result.balance, 0)
+      done()
+    })
 
+    dhttp({
+      method: 'GET',
+      url: 'https://blockexplorer.gamecredits.org/api/addresses/' + address + '/transaction-count'
+    }, function (err, result) {
+      if (err) return done(err)
+
+      // random private keys [probably!] have no transactions
+      assert.strictEqual(result.transactionCount, 0)
+      done()
+    })
+  })
+
+  // TODO@Micic: Check for testnet network parameters
   // // other networks
   // it('can generate a Testnet address', function () {
   //   const testnet = game.networks.testnet
