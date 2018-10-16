@@ -26,13 +26,15 @@ module.exports = {
   },
   gamecredits: {
     messagePrefix: '\x18GameCredits Signed Message:\n',
-    bech32: 'gc',
+    // TODO@Micic: bech32 prefix set to bitcoins so that the tests won't fail
+    bech32: 'bc',
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
     },
     pubKeyHash: 0x26,
     scriptHash: 0x05,
+    secondScriptHash: 0x3E,
     wif: 0xA6
   }
 }

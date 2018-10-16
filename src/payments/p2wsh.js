@@ -6,7 +6,7 @@ const bech32 = require('bech32')
 const bcrypto = require('../crypto')
 const bscript = require('../script')
 const BITCOIN_NETWORK = require('../networks').bitcoin
-
+const GAME_NETWORK = require('../networks').gamecredits
 const EMPTY_BUFFER = Buffer.alloc(0)
 
 function stacksEqual (a, b) {
@@ -61,7 +61,8 @@ function p2wsh (a, opts) {
 
   let network = a.network
   if (!network) {
-    network = (a.redeem && a.redeem.network) || BITCOIN_NETWORK
+    // network = (a.redeem && a.redeem.network) || BITCOIN_NETWORK
+    network = (a.redeem && a.redeem.network) || GAME_NETWORK
   }
 
   const o = { network }
