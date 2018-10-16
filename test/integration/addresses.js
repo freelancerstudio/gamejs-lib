@@ -115,7 +115,6 @@ describe('gamejs-lib (addresses)', function () {
 
       // random private keys [probably!] have no balance
       assert.strictEqual(result.balance, 0)
-      done()
     })
 
     dhttp({
