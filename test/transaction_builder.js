@@ -9,7 +9,7 @@ const Transaction = require('../src/transaction')
 const TransactionBuilder = require('../src/transaction_builder')
 const NETWORKS = require('../src/networks')
 
-const fixtures = require('./fixtures/transaction_builder')
+const fixtures = require('./fixtures/game_transaction_builder')
 
 function constructSign (f, txb) {
   const network = NETWORKS[f.network]
@@ -91,8 +91,8 @@ describe('TransactionBuilder', function () {
   // constants
   const keyPair = ECPair.fromPrivateKey(Buffer.from('0000000000000000000000000000000000000000000000000000000000000001', 'hex'))
   const scripts = [
-    '1BgGZ9tcN4rm9KBzDn7KprQz87SZ26SAMH',
-    '1cMh228HTCiwS8ZsaakH8A8wze1JR5ZsP'
+    'GUXByHDZLvU4DnVH9imSFckt3HEQ5cFgE5',
+    'GRR5spsd218mMsjcJZJBguzb8Vs4QuzBRy'
   ].map(function (x) {
     return baddress.toOutputScript(x)
   })
@@ -333,9 +333,9 @@ describe('TransactionBuilder', function () {
       const txb = new TransactionBuilder()
       txb.setVersion(1)
       txb.addInput('ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff', 1)
-      txb.addOutput('1111111111111111111114oLvT2', 100000)
+      txb.addOutput('GQik5e6UtpsZygNWrqbjBgNgpwgJi6o2UX', 100000)
       txb.sign(0, keyPair)
-      assert.equal(txb.build().toHex(), '0100000001ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff010000006a47304402205f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f02205f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f0121031b84c5567b126440995d3ed5aaba0565d71e1834604819ff9c17f5e9d5dd078fffffffff01a0860100000000001976a914000000000000000000000000000000000000000088ac00000000')
+      assert.equal(txb.build().toHex(), '0100000001ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff010000006a47304402205f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f02205f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f0121031b84c5567b126440995d3ed5aaba0565d71e1834604819ff9c17f5e9d5dd078fffffffff01a0860100000000001976a9144b6d5738ff0a00aeed7759ab64413d4ae789082c88ac00000000')
     })
 
     fixtures.invalid.sign.forEach(function (f) {
@@ -431,7 +431,7 @@ describe('TransactionBuilder', function () {
 
     it('for incomplete with 0 signatures', function () {
       const randomTxData = '0100000000010100010000000000000000000000000000000000000000000000000000000000000000000000ffffffff01e8030000000000001976a9144c9c3dfac4207d5d8cb89df5722cb3d712385e3f88ac02483045022100aa5d8aa40a90f23ce2c3d11bc845ca4a12acd99cbea37de6b9f6d86edebba8cb022022dedc2aa0a255f74d04c0b76ece2d7c691f9dd11a64a8ac49f62a99c3a05f9d01232103596d3451025c19dbbdeb932d6bf8bfb4ad499b95b6f88db8899efac102e5fc71ac00000000'
-      const randomAddress = '1BgGZ9tcN4rm9KBzDn7KprQz87SZ26SAMH'
+      const randomAddress = 'GQpzwbecpsAXkAadmEnc2NkXAFTDUHif2R'
 
       const randomTx = Transaction.fromHex(randomTxData)
       let tx = new TransactionBuilder()
@@ -441,38 +441,40 @@ describe('TransactionBuilder', function () {
       assert(tx)
     })
 
-    it('for incomplete P2SH with 0 signatures', function () {
-      const inp = Buffer.from('010000000173120703f67318aef51f7251272a6816d3f7523bb25e34b136d80be959391c100000000000ffffffff0100c817a80400000017a91471a8ec07ff69c6c4fee489184c462a9b1b9237488700000000', 'hex') // arbitrary P2SH input
-      const inpTx = Transaction.fromBuffer(inp)
+    // TODO@All: Setup valid GameCredits testnet paramteres
+    // it('for incomplete P2SH with 0 signatures', function () {
+    //   const inp = Buffer.from('010000000173120703f67318aef51f7251272a6816d3f7523bb25e34b136d80be959391c100000000000ffffffff0100c817a80400000017a91471a8ec07ff69c6c4fee489184c462a9b1b9237488700000000', 'hex') // arbitrary P2SH input
+    //   const inpTx = Transaction.fromBuffer(inp)
 
-      const txb = new TransactionBuilder(NETWORKS.testnet)
-      txb.addInput(inpTx, 0)
-      txb.addOutput('2NAkqp5xffoomp5RLBcakuGpZ12GU4twdz4', 1e8) // arbitrary output
+    //   const txb = new TransactionBuilder(NETWORKS.testnet)
+    //   txb.addInput(inpTx, 0)
+    //   txb.addOutput('2NAkqp5xffoomp5RLBcakuGpZ12GU4twdz4', 1e8) // arbitrary output
 
-      txb.buildIncomplete()
-    })
+    //   txb.buildIncomplete()
+    // })
 
-    it('for incomplete P2WPKH with 0 signatures', function () {
-      const inp = Buffer.from('010000000173120703f67318aef51f7251272a6816d3f7523bb25e34b136d80be959391c100000000000ffffffff0100c817a8040000001600141a15805e1f4040c9f68ccc887fca2e63547d794b00000000', 'hex')
-      const inpTx = Transaction.fromBuffer(inp)
+    // TODO@All: Setup valid GameCredits testnet paramteres
+  //   it('for incomplete P2WPKH with 0 signatures', function () {
+  //     const inp = Buffer.from('010000000173120703f67318aef51f7251272a6816d3f7523bb25e34b136d80be959391c100000000000ffffffff0100c817a8040000001600141a15805e1f4040c9f68ccc887fca2e63547d794b00000000', 'hex')
+  //     const inpTx = Transaction.fromBuffer(inp)
 
-      const txb = new TransactionBuilder(NETWORKS.testnet)
-      txb.addInput(inpTx, 0)
-      txb.addOutput('2NAkqp5xffoomp5RLBcakuGpZ12GU4twdz4', 1e8) // arbitrary output
+  //     const txb = new TransactionBuilder(NETWORKS.testnet)
+  //     txb.addInput(inpTx, 0)
+  //     txb.addOutput('2NAkqp5xffoomp5RLBcakuGpZ12GU4twdz4', 1e8) // arbitrary output
 
-      txb.buildIncomplete()
-    })
+  //     txb.buildIncomplete()
+  //   })
 
-    it('for incomplete P2WSH with 0 signatures', function () {
-      const inpTx = Transaction.fromBuffer(Buffer.from('010000000173120703f67318aef51f7251272a6816d3f7523bb25e34b136d80be959391c100000000000ffffffff0100c817a80400000022002072df76fcc0b231b94bdf7d8c25d7eef4716597818d211e19ade7813bff7a250200000000', 'hex'))
+  //   it('for incomplete P2WSH with 0 signatures', function () {
+  //     const inpTx = Transaction.fromBuffer(Buffer.from('010000000173120703f67318aef51f7251272a6816d3f7523bb25e34b136d80be959391c100000000000ffffffff0100c817a80400000022002072df76fcc0b231b94bdf7d8c25d7eef4716597818d211e19ade7813bff7a250200000000', 'hex'))
 
-      const txb = new TransactionBuilder(NETWORKS.testnet)
-      txb.addInput(inpTx, 0)
-      txb.addOutput('2NAkqp5xffoomp5RLBcakuGpZ12GU4twdz4', 1e8) // arbitrary output
+  //     const txb = new TransactionBuilder(NETWORKS.testnet)
+  //     txb.addInput(inpTx, 0)
+  //     txb.addOutput('2NAkqp5xffoomp5RLBcakuGpZ12GU4twdz4', 1e8) // arbitrary output
 
-      txb.buildIncomplete()
-    })
-  })
+  //     txb.buildIncomplete()
+  //   })
+  // })
 
   describe('multisig', function () {
     fixtures.valid.multisig.forEach(function (f) {
@@ -590,20 +592,22 @@ describe('TransactionBuilder', function () {
       txb.addInput('aa94ab02c182214f090e99a0d57021caffd0f195a81c24602b1028b130b63e31', 0)
 
       const incomplete = txb.buildIncomplete().toHex()
-      const keyPair = ECPair.fromWIF('L1uyy5qTuGrVXrmrsvHWHgVzW9kKdrp27wBC7Vs6nZDTF2BRUVwy')
+      const keyPair = ECPair.fromWIF('RaoQYqvymh2oT2qvP4BRubWAj9XmJsz2JTZHLuwKaHFgWaijt2Zq')
 
       // sign, as expected
-      txb.addOutput('1Gokm82v6DmtwKEB8AiVhm82hyFSsEvBDK', 15000)
+      txb.addOutput('GQgNYCSrwvRQdC2dUpr6LmZoVdJMUWPkSw', 15000)
       txb.sign(0, keyPair)
       const txId = txb.build().getId()
-      assert.equal(txId, '54f097315acbaedb92a95455da3368eb45981cdae5ffbc387a9afc872c0f29b3')
+      assert.equal(txId, 'ffcd7672b0c95172b4cad70cea87cc1831c7df8b97d5828db8602f027399dcd5')
 
       // and, repeat
       txb = TransactionBuilder.fromTransaction(Transaction.fromHex(incomplete))
-      txb.addOutput('1Gokm82v6DmtwKEB8AiVhm82hyFSsEvBDK', 15000)
+      txb.addOutput('GQgNYCSrwvRQdC2dUpr6LmZoVdJMUWPkSw', 15000)
       txb.sign(0, keyPair)
       const txId2 = txb.build().getId()
       assert.equal(txId, txId2)
     })
   })
 })
+})
+

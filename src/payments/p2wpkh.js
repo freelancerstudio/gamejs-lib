@@ -93,7 +93,7 @@ function p2wpkh (a, opts) {
     let hash
     if (a.address) {
       if (network && network.bech32 !== _address().prefix) throw new TypeError('Invalid prefix or Network mismatch')
-      if (_address().version !== 0x00) throw new TypeError('Invalid address version')
+      if (_address().version !== 0x26) throw new TypeError('Invalid address version')
       if (_address().data.length !== 20) throw new TypeError('Invalid address data')
       hash = _address().data
     }
