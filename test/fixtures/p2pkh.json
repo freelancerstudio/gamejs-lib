@@ -130,13 +130,13 @@
       }
     },
     {
-      "exception": "Invalid address",
+      "exception": "Invalid version or Network mismatch",
       "arguments": {
         "address": "111111111111111111117K4nzc"
       }
     },
     {
-      "exception": "Invalid address",
+      "exception": "Invalid version or Network mismatch",
       "arguments": {
         "address": "111111111111111111111111133izVn"
       }
