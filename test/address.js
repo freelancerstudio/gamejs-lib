@@ -2,7 +2,7 @@ const { describe, it } = require('mocha')
 const assert = require('assert')
 const baddress = require('../src/address')
 const bscript = require('../src/script')
-const fixtures = require('./fixtures/game-address.json')
+const fixtures = require('./fixtures/game_address.json')
 const NETWORKS = Object.assign({
   litecoin: {
     messagePrefix: '\x19Litecoin Signed Message:\n',
