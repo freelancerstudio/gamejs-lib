@@ -8,7 +8,7 @@ const hoodwink = require('hoodwink')
 const ECPair = require('../src/ecpair')
 const tinysecp = require('tiny-secp256k1')
 
-const fixtures = require('./fixtures/ecpair.json')
+const fixtures = require('./fixtures/game_ecpair.json')
 
 const NETWORKS = require('../src/networks')
 const NETWORKS_LIST = [] // Object.values(NETWORKS)
@@ -53,14 +53,15 @@ describe('ECPair', function () {
       assert.strictEqual(keyPair.compressed, false)
     })
 
-    it('supports the network option', function () {
-      const keyPair = ECPair.fromPrivateKey(ONE, {
-        compressed: false,
-        network: NETWORKS.testnet
-      })
+    // TODO@All: Add GameCredits testnet parameters
+    // it('supports the network option', function () {
+    //   const keyPair = ECPair.fromPrivateKey(ONE, {
+    //     compressed: false,
+    //     network: NETWORKS.testnet
+    //   })
 
-      assert.strictEqual(keyPair.network, NETWORKS.testnet)
-    })
+    //   assert.strictEqual(keyPair.network, NETWORKS.testnet)
+    // })
 
     fixtures.valid.forEach(function (f) {
       it('derives public key for ' + f.WIF, function () {
@@ -139,7 +140,7 @@ describe('ECPair', function () {
 
   describe('makeRandom', function () {
     const d = Buffer.alloc(32, 4)
-    const exWIF = 'KwMWvwRJeFqxYyhZgNwYuYjbQENDAPAudQx5VEmKJrUZcq6aL2pv'
+    const exWIF = 'RZPUf57VJ6fBaeCkhFwVAAL6rjzztHUXpCd2kVvuy37cKQdnTKTa'
 
     describe('uses randombytes RNG', function () {
       it('generates a ECPair', function () {
@@ -163,18 +164,19 @@ describe('ECPair', function () {
       const keyPair = ECPair.makeRandom()
 
       assert.strictEqual(keyPair.compressed, true)
-      assert.strictEqual(keyPair.network, NETWORKS.bitcoin)
+      assert.strictEqual(keyPair.network, NETWORKS.gamecredits)
     })
 
-    it('supports the options parameter', function () {
-      const keyPair = ECPair.makeRandom({
-        compressed: false,
-        network: NETWORKS.testnet
-      })
+    // TODO@All: Add GameCredits testnet parameters
+    // it('supports the options parameter', function () {
+    //   const keyPair = ECPair.makeRandom({
+    //     compressed: false,
+    //     network: NETWORKS.testnet
+    //   })
 
-      assert.strictEqual(keyPair.compressed, false)
-      assert.strictEqual(keyPair.network, NETWORKS.testnet)
-    })
+    //   assert.strictEqual(keyPair.compressed, false)
+    //   assert.strictEqual(keyPair.network, NETWORKS.testnet)
+    // })
 
     it('throws if d is bad length', function () {
       function rng () {

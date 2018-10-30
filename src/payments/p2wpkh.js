@@ -7,6 +7,7 @@ const bcrypto = require('../crypto')
 const bech32 = require('bech32')
 const bscript = require('../script')
 const BITCOIN_NETWORK = require('../networks').bitcoin
+const GAME_NETWORK = require('../networks').gamecredits
 
 const EMPTY_BUFFER = Buffer.alloc(0)
 
@@ -45,7 +46,8 @@ function p2wpkh (a, opts) {
     }
   })
 
-  const network = a.network || BITCOIN_NETWORK
+  // const network = a.network || BITCOIN_NETWORK
+  const network = a.network || GAME_NETWORK
   const o = { network }
 
   lazy.prop(o, 'address', function () {

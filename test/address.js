@@ -2,7 +2,7 @@ const { describe, it } = require('mocha')
 const assert = require('assert')
 const baddress = require('../src/address')
 const bscript = require('../src/script')
-const fixtures = require('./fixtures/address.json')
+const fixtures = require('./fixtures/game_address.json')
 const NETWORKS = Object.assign({
   litecoin: {
     messagePrefix: '\x19Litecoin Signed Message:\n',
@@ -38,27 +38,28 @@ describe('address', function () {
     })
   })
 
-  describe('fromBech32', function () {
-    fixtures.standard.forEach((f) => {
-      if (!f.bech32) return
+  // TODO@Micic: Bech32 not supported
+  // describe('fromBech32', function () {
+  //   fixtures.standard.forEach((f) => {
+  //     if (!f.bech32) return
 
-      it('decodes ' + f.bech32, function () {
-        const actual = baddress.fromBech32(f.bech32)
+  //     it('decodes ' + f.bech32, function () {
+  //       const actual = baddress.fromBech32(f.bech32)
 
-        assert.strictEqual(actual.version, f.version)
-        assert.strictEqual(actual.prefix, NETWORKS[f.network].bech32)
-        assert.strictEqual(actual.data.toString('hex'), f.data)
-      })
-    })
+  //       assert.strictEqual(actual.version, f.version)
+  //       assert.strictEqual(actual.prefix, NETWORKS[f.network].bech32)
+  //       assert.strictEqual(actual.data.toString('hex'), f.data)
+  //     })
+  //   })
 
-    fixtures.invalid.bech32.forEach((f, i) => {
-      it('decode fails for ' + f.bech32 + '(' + f.exception + ')', function () {
-        assert.throws(function () {
-          baddress.fromBech32(f.address)
-        }, new RegExp(f.exception))
-      })
-    })
-  })
+  //   fixtures.invalid.bech32.forEach((f, i) => {
+  //     it('decode fails for ' + f.bech32 + '(' + f.exception + ')', function () {
+  //       assert.throws(function () {
+  //         baddress.fromBech32(f.address)
+  //       }, new RegExp(f.exception))
+  //     })
+  //   })
+  // })
 
   describe('fromOutputScript', function () {
     fixtures.standard.forEach(function (f) {
@@ -93,26 +94,28 @@ describe('address', function () {
     })
   })
 
-  describe('toBech32', function () {
-    fixtures.bech32.forEach((f, i) => {
-      if (!f.bech32) return
-      const data = Buffer.from(f.data, 'hex')
+  // TODO@Micic: Bech32 not supported
+  //
+  // describe('toBech32', function () {
+  //   fixtures.bech32.forEach((f, i) => {
+  //     if (!f.bech32) return
+  //     const data = Buffer.from(f.data, 'hex')
 
-      it('encode ' + f.address, function () {
-        assert.deepEqual(baddress.toBech32(data, f.version, f.prefix), f.address)
-      })
-    })
+  //     it('encode ' + f.address, function () {
+  //       assert.deepEqual(baddress.toBech32(data, f.version, f.prefix), f.address)
+  //     })
+  //   })
 
-    fixtures.invalid.bech32.forEach((f, i) => {
-      if (!f.prefix || f.version === undefined || f.data === undefined) return
+  //   fixtures.invalid.bech32.forEach((f, i) => {
+  //     if (!f.prefix || f.version === undefined || f.data === undefined) return
 
-      it('encode fails (' + f.exception, function () {
-        assert.throws(function () {
-          baddress.toBech32(Buffer.from(f.data, 'hex'), f.version, f.prefix)
-        }, new RegExp(f.exception))
-      })
-    })
-  })
+  //     it('encode fails (' + f.exception, function () {
+  //       assert.throws(function () {
+  //         baddress.toBech32(Buffer.from(f.data, 'hex'), f.version, f.prefix)
+  //       }, new RegExp(f.exception))
+  //     })
+  //   })
+  // })
 
   describe('toOutputScript', function () {
     fixtures.standard.forEach(function (f) {

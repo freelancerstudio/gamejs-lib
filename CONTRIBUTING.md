@@ -28,7 +28,7 @@ To contribute a patch, the workflow is as follows:
   1. Create topic branch
   1. Commit patches
   1. Push changes to your fork
-  1. Submit a pull request to https://github.com/bitcoinjs/bitcoinjs-lib
+  1. Submit a pull request to https://github.com/gamecredits-project/gamejs-lib
 
 [Commits should be atomic](https://en.wikipedia.org/wiki/Atomic_commit#Atomic_commit_convention) and diffs easy to read.
 
@@ -47,17 +47,6 @@ If you combine these, the PR may be rejected or asked to be split up.
 The length of time required for peer review is unpredictable and will vary from pull request to pull request.
 
 Refer to the [Git manual](https://git-scm.com/doc) for any information about `git`.
-
-
-## We adhere to Bitcoin-Core policy
-Bitcoin script payment/script templates are based on community consensus,  but typically adhere to bitcoin-core node policy by default.
-
-- `bitcoinjs.script.decompile` is consensus bound only,  it does not reject based on policy.
-- `bitcoinjs.script.compile` will try to adhere to bitcoin-core `IsStandard` policies rules. (eg. minimalpush in https://github.com/bitcoinjs/bitcoinjs-lib/pull/638)
-
-Any elliptic curve `sign` operations should adhere to `IsStandard` policies, like `LOW_S`, but `verify` should not reject them [by default].
-
-If you need non-standard rejecting `decoding`, you should use an external module,  not this library.
 
 #### TLDR
 Where "standards compliant" refers to the default policies of bitcoin-core,  we adhere to the following:

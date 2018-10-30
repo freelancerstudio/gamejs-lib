@@ -1,17 +1,17 @@
 {
-  "name": "bitcoinjs-lib",
-  "version": "4.0.2",
-  "description": "Client-side Bitcoin JavaScript library",
+  "name": "gamejs-lib",
+  "version": "0.1.0",
+  "description": "Client-side GameCredits JavaScript library",
   "main": "./src/index.js",
   "engines": {
     "node": ">=8.0.0"
   },
   "keywords": [
-    "bitcoinjs",
-    "bitcoin",
+    "gamejs",
+    "gamecredits",
     "browserify",
     "javascript",
-    "bitcoinjs"
+    "gamejs"
   ],
   "scripts": {
     "coverage-report": "nyc report --reporter=lcov",
@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bitcoinjs/bitcoinjs-lib.git"
+    "url": "https://github.com/gamecredits-project/gamejs-lib.git"
   },
   "files": [
     "src"

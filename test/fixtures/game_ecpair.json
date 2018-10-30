@@ -1,0 +1,125 @@
+{
+  "valid": [
+    {
+      "d": "2e29c4ebdbba8d892c74cc14c9ff9f98aaf02ee41d7e94a0f9b21fc2335729db",
+      "Q": "034dd9567ef620db4a45c5c3db3623e455fe0ddd25af19d686e3eb35825adec8e8",
+      "compressed": true,
+      "network": "gamecredits",
+      "address": "GYBUuyK7YBxAzomGLdvQ467VnR14Bt8bJ4",
+      "WIF": "RaoQYqvymh2oT2qvP4BRubWAj9XmJsz2JTZHLuwKaHFgWaijt2Zq"
+    },
+    {
+      "d": "2e29c4ebdbba8d892c74cc14c9ff9f98aaf02ee41d7e94a0f9b21fc2335729db",
+      "Q": "044dd9567ef620db4a45c5c3db3623e455fe0ddd25af19d686e3eb35825adec8e8a2b7bf028684fd0ff3cf44caa73262f4294a4237a040b76e5f7063d325d8d8c5",
+      "compressed": false,
+      "network": "gamecredits",
+      "address": "GLqwvfKFsmsTbCvp41z1F5tgbRouc7W58i",
+      "WIF": "6a2uThYG8Qa2v2KndGDnX3P1qyJr1Rh7BkdKCmAb7dm7EWgq7hS"
+    },
+    {
+      "d": "33d2d66058195cdd00dc3ad4c2d5b632affa652c1acb1e44e721d10f0b083fef",
+      "Q": "0261ab8c3028c84c6002b8dd4960cb5875af8b0a3f9cbf1e8fb6334b80facbd0a9",
+      "compressed": true,
+      "network": "gamecredits",
+      "address": "GRR5spsd218mMsjcJZJBguzb8Vs4QuzBRy",
+      "WIF": "RazQjM3Mtn6un8b4PozK3ttx6jtWM3EG7FajJFLmKq9npozfxFtL"
+    },
+    {
+      "d": "7218223d1845e1291d60de3661522ff98032be67a1dc47c5fa87da3e23809bed",
+      "Q": "03c426459b0988d4a53beead50744759b56b1e296a95f12d0ddba68faacf70ecdf",
+      "compressed": true,
+      "network": "gamecredits",
+      "address": "GeCHPspYPF8WrGkh9sEHXrZW4kBfWVqsbz",
+      "WIF": "Rd5TQNAnkT5dL632pExUCFohHY4PwX3oCfyiBxNt6XJAA5WsoyPB"
+    },
+    {
+      "d": "7218223d1845e1291d60de3661522ff98032be67a1dc47c5fa87da3e23809bed",
+      "Q": "04c426459b0988d4a53beead50744759b56b1e296a95f12d0ddba68faacf70ecdf1bc5592c106dddfabb3c6c873fbe1b83de0d08a4802a3cea40c8d586b507a383",
+      "compressed": false,
+      "network": "gamecredits",
+      "address": "GQa9gxHEkvtyEbvLQfdwEUsvCjfjVYCyDw",
+      "WIF": "6aYpfpqtbmRcRGBtALvoVNw5bZQsxrQHp3wY5kMpNeDx6JLPVhA"
+    },
+    {
+      "d": "9685592ad10cfcc5cea3fe7ec34e8915088a4989f67a3a449095ae2865d2a736",
+      "Q": "03c522844e9f671e11e3f687322a25a136fc80d294605c1d0291547a3c25b1aab1",
+      "compressed": true,
+      "network": "gamecredits",
+      "address": "GQjUNwa5fJTjP5DjQoHmk8GcfgmwbpLY2v",
+      "WIF": "ReJGJTQYqxGSw1HJ6nKQwZ4HxpxfjpwyJNb1Gav9A8Yeo362qXif"
+    }
+  ],
+  "invalid": {
+    "fromPrivateKey": [
+      {
+        "exception": "Private key not in range \\[1, n\\)",
+        "d": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      {
+        "exception": "Private key not in range \\[1, n\\)",
+        "d": "fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141"
+      },
+      {
+        "exception": "Private key not in range \\[1, n\\)",
+        "d": "fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364142"
+      },
+      {
+        "exception": "Expected property \"compressed\" of type \\?Boolean, got Number 2",
+        "d": "0000000000000000000000000000000000000000000000000000000000000001",
+        "options": {
+          "compressed": 2
+        }
+      },
+      {
+        "exception": "Expected property \"network.messagePrefix\" of type Buffer|String, got undefined",
+        "d": "0000000000000000000000000000000000000000000000000000000000000001",
+        "options": {
+          "network": {}
+        }
+      }
+    ],
+    "fromPublicKey": [
+      {
+        "exception": "Expected isPoint, got Buffer",
+        "Q": "",
+        "options": {}
+      },
+      {
+        "exception": "Expected property \"network.messagePrefix\" of type Buffer|String, got undefined",
+        "Q": "044289801366bcee6172b771cf5a7f13aaecd237a0b9a1ff9d769cabc2e6b70a34cec320a0565fb7caf11b1ca2f445f9b7b012dda5718b3cface369ee3a034ded6",
+        "options": {
+          "network": {}
+        }
+      },
+      {
+        "description": "Bad X coordinate (== P)",
+        "exception": "Expected isPoint, got Buffer",
+        "Q": "040000000000000000000000000000000000000000000000000000000000000001fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f",
+        "options": {}
+      }
+    ],
+    "fromWIF": [
+      {
+        "exception": "Invalid network version",
+        "network": "gamecredits",
+        "WIF": "92Qba5hnyWSn5Ffcka56yMQauaWY6ZLd91Vzxbi4a9CCetaHtYj"
+      },
+      {
+        "exception": "Unknown network version",
+        "WIF": "brQnSed3Fia1w9VcbbS6ZGDgJ6ENkgwuQY2LS7pEC5bKHD1fMF"
+      },
+      {
+        "exception": "Invalid compression flag",
+        "WIF": "KwDiBf89QgGbjEhKnhXJuH7LrciVrZi3qYjgd9M7rFU73sfZr2ym"
+      },
+      {
+        "exception": "Invalid WIF length",
+        "WIF": "3tq8Vmhh9SN5XhjTGSWgx8iKk59XbKG6UH4oqpejRuJhfYD"
+      },
+      {
+        "exception": "Invalid WIF length",
+        "WIF": "38uMpGARR2BJy5p4dNFKYg9UsWNoBtkpbdrXDjmfvz8krCtw3T1W92ZDSR"
+      }
+    ]
+  }
+}
