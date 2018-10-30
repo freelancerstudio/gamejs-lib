@@ -28,7 +28,15 @@ Presently,  we do not have any formal documentation other than our [examples](#e
 
 
 ## Installation
-**Coming soon!**
+``` bash
+npm install gamejs-lib
+```
+
+Typically we support the [Node Maintenance LTS version](https://github.com/nodejs/Release).
+If in doubt, see the [.travis.yml](.travis.yml) for what versions are used by our continuous integration tests.
+
+**WARNING**: We presently don't provide any tooling to verify that the release on `npm` matches GitHub.  As such, you should verify anything downloaded by `npm` against your own verified copy.
+
 
 ## Usage
 
