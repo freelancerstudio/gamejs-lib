@@ -40,12 +40,21 @@ If you're familiar with how to use browserify, ignore this and carry on, otherwi
 
 **NOTE**: If you expect this library to run on an iOS 10 device, ensure that you are using [buffer@5.0.5](https://github.com/feross/buffer/pull/155) or greater.
 
-### Typescript or VSCode users
-**Coming soon!**
-
 ## Examples
-**Coming soon!**
+The below examples are implemented as so you can inspect them and write your own code that is fulfilling your needs. These methods should be easy to understand.
+Otherwise, pull requests are appreciated.
 
+- [Generate random address](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L5)
+- [Generate an address from a SHA256 hash](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L17)
+- [Import an address via WIF](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L31)
+- [Generate a 2-of-2 P2SH address](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L43)
+- [Generate a 2-of-3 P2SH address](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L70)
+- [Create a 1-to-1 Transaction](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L98)
+- [Create a 2-to-2 Tranasction](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L123)
+- [Create a Transaction using MultiSignature address](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L157)
+- [Verify Transaction](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L196)
+
+BIP32 and BIP44 standards coming in the next release!
 ## Contributing
 See [CONTRIBUTING.md](CONTRIBUTING.md).
 
