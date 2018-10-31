@@ -1,6 +1,9 @@
 # GameJS (gamejs-lib)
 
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
+<a href="https://gamecredits.org/" target="_blank">
+<img src="https://s2.coinmarketcap.com/static/img/coins/200x200/576.png" width="60">
+</a>
 
 A javascript GameCredits library for node.js and browsers. This library is a fork of [bitcoinjs-lib](https://github.com/bitcoinjs/bitcoinjs-lib)
 
@@ -44,15 +47,25 @@ If you're familiar with how to use browserify, ignore this and carry on, otherwi
 The below examples are implemented so you can inspect them and write your own code that is fulfilling your needs. These methods should be easy to understand.
 Otherwise, pull requests are appreciated.
 
-- [Generate random address](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L5)
-- [Generate an address from a SHA256 hash](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L17)
-- [Import an address via WIF](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L31)
-- [Generate a 2-of-2 P2SH address](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L43)
-- [Generate a 2-of-3 P2SH address](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L70)
-- [Create a 1-to-1 Transaction](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L98)
-- [Create a 2-to-2 Tranasction](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L123)
-- [Create a Transaction using MultiSignature address](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L157)
-- [Verify Transaction](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L196)
+- [Generate random address](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L7)
+- [Generate an address from a SHA256 hash](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L19)
+- [Import an address via WIF](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L33)
+- [Generate a 2-of-2 P2SH address](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L45)
+- [Generate a 2-of-3 P2SH address](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L72)
+- [Create a 1-to-1 Transaction](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L100)
+- [Create a 2-to-2 Tranasction](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L125)
+- [Create a Transaction using MultiSignature address](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L159)
+- [Verify Transaction](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L198)
+- [Generate 12 word BIP39 Mnemonic](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L234)
+- [Generate stronger BIP39 Mnemonic](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L243)
+- [Generate BIP39 Mnemonic with a different wordlist](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L251)
+- [Validate BIP39 Mnemonic](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L259)
+- [Import a BIP32 xpriv and export to WIF](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L269)
+- [Export a BIP32 xpriv, then import it](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L280)
+- [Export a BIP32 xpub](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L295)
+- [Create BIP32, gamecredits, account 0, external](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L309)
+- [Use BIP39 to generate BIP32 addresses](https://github.com/gamecredits-project/gamejs-lib/blob/master/examples/index.js#L330)
+
 
 BIP32 and BIP44 standards coming in the next release!
 ## Contributing
