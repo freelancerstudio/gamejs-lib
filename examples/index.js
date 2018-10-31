@@ -1,6 +1,8 @@
 'use strict'
 
 const game = require('../')
+const bip32 = require('bip32')
+const bip39 = require('bip39')
 
 function generateRandomAddress() {
   // Generate random GameCredits key pair
@@ -221,4 +223,131 @@ function verifyTransactionSignature() {
     // Dispaly relevant information
     console.log('Is the signature verified? - ' + verify)
   })
+}
+
+// Get address using BIP39 and BIP32 Nodes
+// This function is a utilty function
+function getAddress (node, network) {
+  return game.payments.p2pkh({ pubkey: node.publicKey, network }).address
+}
+
+function generate12WordMnemonic() {
+  // Default instance of generateMnemonic() will generate a 12 word mnemonic
+  // Default strenght is 128
+  const mnemonic = bip39.generateMnemonic()
+
+  // Display mnemonic
+  console.log(mnemonic)
+}
+
+function generateStrongerMnemonic() {
+  // This instance of generateMnemonic() will generate a 24 word mnemonic
+  const mnemonic24Words = bip39.generateMnemonic(256)
+
+  // Display mnemonic
+  console.log(mnemonic24Words)
+}
+
+function generateMnemonicWithSpanishWordlist() {
+  // Generate default mnemonic using spanish wordlist
+  const mnemonic = bip39.generateMnemonic(128, null, bip39.wordlists.spanish)
+
+  // Display spanish mnemonic
+  console.log(mnemonic)
+}
+
+function validateMnemonic() {
+  // Generate a default mnemonic
+  const mnemonic = bip39.generateMnemonic()
+  // Check if that mnemonic is valid
+  const valid = bip39.validateMnemonic(mnemonic)
+
+  // Display relevant information
+  console.log('Is this mnemonic valid? - ' + valid)
+}
+
+function importBIP39PrivExportWIF() {
+  // declare BIP39 root key
+  const xpriv = 'xprv9s21ZrQH143K4DRBUU8Dp25M61mtjm9T3LsdLLFCXL2U6AiKEqs7dtCJWGFcDJ9DtHpdwwmoqLgzPrW7unpwUyL49FZvut9xUzpNB6wbEnz'
+
+  // export root key from base58
+  const node = bip32.fromBase58(xpriv, game.networks.gamecredits)
+
+  // Display relevant information
+  console.log('Private key in WIF format: ' + node.toWIF())
+}
+
+function exportBIP32PrivImportIt() {
+  // Hardcoded mnemonic (used as example)
+  const mnemonic = 'praise you muffin lion enable neck grocery crumble super myself license ghost'
+  // Converting mnemonic to a valid BIP39 seed
+  const seed = bip39.mnemonicToSeed(mnemonic)
+  // Converting seed to BIP39 Root key
+  const rootKey = bip32.fromSeed(seed, game.networks.gamecredits).toBase58()
+  // Restoring the BIP32 Root key
+  const restored = bip32.fromBase58(rootKey, game.networks.gamecredits)
+
+  // Display relevant information
+  console.log('Account address: ' + getAddress(restored))
+  console.log('Account private key in WIF format: ' + restored.toWIF())
+}
+
+function exportBIP32xPub() {
+  // Hardcoded mnemonic (used as example)
+  const mnemonic = 'praise you muffin lion enable neck grocery crumble super myself license ghost'
+  // Converting mnemonic to a valid BIP39 seed
+  const seed = bip39.mnemonicToSeed(mnemonic)
+  // Converting seed to BIP39 object
+  const rootKey = bip32.fromSeed(seed, game.networks.gamecredits)
+  // Exporting xPubKey
+  const xPubKey = rootKey.neutered().toBase58()
+
+  // Display BIP32 xPublicKey 
+  console.log('xPublicKey: ' + xPubKey)
+}
+
+function createBIP32AccountExternal() {
+  // Hardcoded mnemonic (used as example)
+  const mnemonic = 'praise you muffin lion enable neck grocery crumble super myself license ghost'
+  // Converting mnemonic to a valid BIP39 seed
+  const seed = bip39.mnemonicToSeed(mnemonic)
+  // Converting seed to BIP39 object
+  const rootKey = bip32.fromSeed(seed, game.networks.gamecredits)
+  // Creating derivation path from our root key
+  // This is a default derivation path, you should use another one
+  const child = rootKey.derivePath('m/0')
+  
+  // Path of the first child should be m/0/0
+  const firstChild = child.derivePath('0')
+  // Path of the second child should be m/0/1
+  const secondChild = child.derivePath('1')
+
+  // Display child addresses
+  console.log('First child address: ' + getAddress(firstChild))
+  console.log('Second child address: ' + getAddress(secondChild))
+}
+
+function BIP39toBIP32Addresses() {
+  // Hardcoded mnemonic (used as example)
+  const mnemonic = 'praise you muffin lion enable neck grocery crumble super myself license ghost'
+  // Converting mnemonic to a valid BIP39 seed
+  const seed = bip39.mnemonicToSeed(mnemonic)
+  // Converting seed to BIP39 object
+  const rootKey = bip32.fromSeed(seed, game.networks.gamecredits)
+
+  // Declare receiving addresses
+  const firstReceiveAddress = getAddress(rootKey.derivePath("m/0'/0/0"))
+  const secondReceiveAddress = getAddress(rootKey.derivePath("m/0'/0/1"))
+
+  // Declare change addresses
+  const firstChangeAddress = getAddress(rootKey.derivePath("m/0'/1/0"))
+  const secondChangeAddress = getAddress(rootKey.derivePath("m/0'/1/1"))
+
+  // Display receiving addresses
+  console.log('First receive address: ' + firstReceiveAddress)
+  console.log('Second receive address: ' + secondReceiveAddress)
+
+  // Display change addresses
+  console.log('First change address: ' + firstChangeAddress)
+  console.log('Second change address: ' + secondChangeAddress)
 }
